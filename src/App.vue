@@ -1,16 +1,20 @@
 <template>
   <div id="app">
+    <NavBar />
     <router-view></router-view>
   </div>
 </template>
 
 <script>
 import AppCars from './components/AppCars.vue'
+import NavBar from './components/NavBar.vue'
+import AddCar from './components/AddCar.vue'
 
 export default {
   name: 'app',
   components: {
-    AppCars
+    AppCars,
+    NavBar
   }
 }
 </script>
@@ -22,6 +26,5 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
