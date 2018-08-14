@@ -12,7 +12,7 @@ export default class Cars {
     }
 
     add(car) {
-        // console.log(car);
+        console.log(car);
         return axios.post('cars', car)
     }
 

@@ -21,9 +21,8 @@
             <label>Number of doors</label> <br>
             <input v-model="newCar.numberOfDoors" type="number" placeholder="number of doors..."> <br><br>
 
-            <label>Is automatic</label> <br>
             <input type="checkbox" id="true" value="true" v-model="newCar.isAutomatic">
-            <label for="true">Yes</label> <br><br>
+            <label for="true">Automatic</label> <br><br>
 
             <label>Engine</label> <br>
 
