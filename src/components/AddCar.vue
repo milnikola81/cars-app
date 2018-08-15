@@ -41,6 +41,7 @@
             <br><br>
 
             <button @click="addCar(newCar)" type="submit">Add car</button>
+            <button @click="preview(newCar)" type="submit">Preview</button>
             <input type="reset" value="Reset" />
 
         </form><br><br><br>
@@ -65,6 +66,17 @@ export default {
             // console.log(newCar.isAutomatic)
             cars.add(newCar)
             this.$router.push('cars')
+        },
+        preview(newCar) {
+            alert(
+                'Brand: '+newCar.brand+'\n'+
+                'Model: '+newCar.model+'\n'+
+                'Year: '+newCar.year+'\n'+
+                'Max Speed: ' +newCar.maxSpeed+'\n'+
+                'Number of doors: '+newCar.numberOfDoors+'\n'+
+                'Automatic: '+newCar.isAutomatic+'\n'+
+                'Engine: '+newCar.engine
+            )
         }
     },
     created() {
