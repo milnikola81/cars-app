@@ -1,49 +1,64 @@
 <template>
-    <div>
+    <div id="AddCar">
         <h1>{{ title }}</h1>
         <form @submit.prevent>
-            <label>Brand</label> <br>
-            <input v-model="newCar.brand" type="text" minlength="2" placeholder="brand..." required> <br><br>
+            <div class="form-group">
+                <label>Brand</label> <br>
+                <input  class="form-control" v-model="newCar.brand" type="text" minlength="2" placeholder="brand..." required>
+            </div>
 
-            <label>Model</label> <br>
-            <input v-model="newCar.model" type="text" minlength="2" placeholder="model..." required> <br><br>
+            <div class="form-group">
+                <label>Model</label> <br>
+                <input class="form-control" v-model="newCar.model" type="text" minlength="2" placeholder="model..." required>
+            </div>
 
-            <label>Year</label> <br>
-            <select v-model="newCar.year" required>
-                <option disabled value="">Please select year</option>
-                <option v-for="(year, index) in years" :key='index' v-bind:value="year">{{ year }}</option>
-            </select>
+            <div class="form-group">
+                <label>Year</label> <br>
+                <select class="form-control" v-model="newCar.year" required>
+                    <option disabled value="">Please select year</option>
+                    <option v-for="(year, index) in years" :key='index' v-bind:value="year">{{ year }}</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Max Speed</label> <br>
+                <input class="form-control" v-model="newCar.maxSpeed" type="number" placeholder="max speed...">
+            </div>
+
+            <div class="form-group">
+                <label>Number of doors</label> <br>
+                <input class="form-control" v-model="newCar.numberOfDoors" type="number" placeholder="number of doors..." required>
+            </div>
+
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="true" value="true" v-model="newCar.isAutomatic">
+                <label class="form-check-label" for="true">Automatic</label>
+            </div>
             <br><br>
-
-            <label>Max Speed</label> <br>
-            <input v-model="newCar.maxSpeed" type="number" placeholder="max speed..."> <br><br>
-
-            <label>Number of doors</label> <br>
-            <input v-model="newCar.numberOfDoors" type="number" placeholder="number of doors..." required> <br><br>
-
-            <input type="checkbox" id="true" value="true" v-model="newCar.isAutomatic">
-            <label for="true">Automatic</label> <br><br>
 
             <label>Engine</label> <br>
-
-            <input type="radio" name="engine" id="electric" value="Electric" v-model="newCar.engine" required>
-            <label for="electric">Electric</label>
-
-            <input type="radio" name="engine"  id="petrol" value="Petrol" v-model="newCar.engine" required>
-            <label for="petrol">Petrol</label>
-
-            <input type="radio" name="engine"  id="hybrid" value="Hybrid" v-model="newCar.engine" required>
-            <label for="hybrid">Hybrid</label>
-
-            <input type="radio" name="engine"  id="diesel" value="Diesel" v-model="newCar.engine" required>
-            <label for="diesel">Diesel</label>
-
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="engine" id="electric" value="Electric" v-model="newCar.engine" required>
+                <label class="form-check-label" for="electric">Electric</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="engine"  id="petrol" value="Petrol" v-model="newCar.engine" required>
+                <label class="form-check-label" for="petrol">Petrol</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="engine"  id="hybrid" value="Hybrid" v-model="newCar.engine" required>
+                <label class="form-check-label" for="hybrid">Hybrid</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="engine"  id="diesel" value="Diesel" v-model="newCar.engine" required>
+                <label class="form-check-label" for="diesel">Diesel</label>
+            </div>
             <br><br>
 
-            <button v-if="(!this.$route.params.id)" @click="addCar(newCar)" type="submit">{{ title }}</button>
-            <button v-else @click="edit(newCar)" type="submit">Edit car</button>
-            <button @click="preview(newCar)" type="submit">Preview</button>
-            <input type="reset" value="Reset" />
+            <button class="btn btn-success" v-if="(!this.$route.params.id)" @click="addCar(newCar)" type="submit">{{ title }}</button>
+            <button class="btn btn-warning" v-else @click="edit(newCar)" type="submit">Edit car</button>
+            <button class="btn btn-info" @click="preview(newCar)" type="submit">Preview</button>
+            <input class="btn btn-danger" type="reset" value="Reset" />
             <br>
             
 
@@ -113,12 +128,16 @@ export default {
 </script>
 
 <style scoped>
-
+#AddCar {
+    margin-top: 2rem;
+}
 form {
-    max-width: 80%;
+    max-width: 40%;
     margin: 0 auto;
+    margin-top: 2rem;
     text-align: left;
 }
+
 button {
     margin-right: 2rem;
 }

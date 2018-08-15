@@ -1,7 +1,7 @@
 <template>
-    <div>
+    <div id="AppCars">
         <h1>App Cars Vue</h1>
-        <table>
+        <table class="table table-striped">
             <thead>
                 <th>
                     Brand
@@ -23,6 +23,9 @@
                 </th>
                 <th>
                     No. of doors
+                </th>
+                <th colspan=3>
+
                 </th>
             </thead>
             <tbody>
@@ -48,17 +51,17 @@
                     <td>
                         {{car.numberOfDoors}}
                     </td>
-                    <td style="border:none">
+                    <td>
                         <router-link :to="{ name: 'single-car', params: {id: car.id}}">
                             <button type="button" class="btn btn-info">Show</button>
                         </router-link>
                     </td>
-                    <td style="border:none">
+                    <td>
                         <router-link :to="{ name: 'edit-car', params: {id: car.id}}">
                             <button type="button" class="btn btn-warning">Edit</button>
                         </router-link>
                     </td>
-                    <td style="border:none">
+                    <td>
                         <button type="button" class="btn btn-danger" @click="deleteCar(car)">Delete</button>
                     </td>
                 </tr>
@@ -96,17 +99,15 @@ export default {
 </script>
 
 <style scoped>
+#AppCars {
+    margin-top: 2rem;
+}
 table {
     max-width: 90%;
     margin: 0 auto;
+    margin-top: 2rem;
 }
-th, td {
-    border: 1px solid gray;
-    padding-top: 0.2rem;
-    padding-bottom: 0.2rem;
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
-}
+
 </style>
 
 
