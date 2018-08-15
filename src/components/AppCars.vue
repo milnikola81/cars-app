@@ -49,15 +49,14 @@
                         {{car.numberOfDoors}}
                     </td>
                     <td style="border:none">
-                        <!-- <router-link :to="{ name: 'user', params: { userId: 123 }}">User</router-link> -->
                         <router-link :to="{ name: 'single-car', params: {id: car.id}}">
                             <button type="button" class="btn btn-info">Show</button>
                         </router-link>
                     </td>
                     <td style="border:none">
-                        <!-- <router-link :to="{ name: 'edit-car', params: {id: car.id}}"> -->
+                        <router-link :to="{ name: 'edit-car', params: {id: car.id}}">
                             <button type="button" class="btn btn-warning">Edit</button>
-                        <!-- </router-link> -->
+                        </router-link>
                     </td>
                     <td style="border:none">
                         <button type="button" class="btn btn-danger" @click="deleteCar(car)">Delete</button>

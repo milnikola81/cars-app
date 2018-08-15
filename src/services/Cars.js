@@ -19,6 +19,9 @@ export default class Cars {
     deleteCar(car) {
         return axios.delete(`cars/${car.id}`)
     }
+    edit(car) {
+        return axios.put(`cars/${car.id}`, car)
+    }
 
 }
 export const cars = new Cars ()

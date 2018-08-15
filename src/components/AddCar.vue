@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>Add Car</h1>
+        <h1>{{ title }}</h1>
         <form @submit.prevent>
             <label>Brand</label> <br>
             <input v-model="newCar.brand" type="text" minlength="2" placeholder="brand..." required> <br><br>
@@ -40,9 +40,12 @@
 
             <br><br>
 
-            <button @click="addCar(newCar)" type="submit">Add car</button>
+            <button v-if="(!this.$route.params.id)" @click="addCar(newCar)" type="submit">{{ title }}</button>
+            <button v-else @click="edit(newCar)" type="submit">Edit car</button>
             <button @click="preview(newCar)" type="submit">Preview</button>
             <input type="reset" value="Reset" />
+            <br>
+            
 
         </form><br><br><br>
     </div>
@@ -54,6 +57,7 @@ import { cars } from '../services/Cars'
 export default {
     data () {
         return {
+            title: 'Add car',
             newCar: {},
             years: []
         }
@@ -69,6 +73,13 @@ export default {
             })
             .catch(err => console.log(err))
             // checks if data is submitted, then redirects route (this way required in inputs works)
+        },
+        edit(car) {
+            cars.edit(car)
+            .then((response) => {
+                this.$router.push('../cars')
+            })
+            .catch(err => console.log(err))
         },
         preview(newCar) {
             alert(
@@ -86,6 +97,16 @@ export default {
         for (var i = 1990; i <= 2018; i++) {
             this.years.push(i);
         }
+        if(this.$route.params.id) {
+            this.title = 'Edit car'
+            cars.getCar(this.$route.params.id)
+            .then(response => (this.newCar = response.data));
+        }
+        // console.log(this.$route.params.id)
+    },
+    beforeRouteLeave: function(to, from, next) {
+        this.title = 'Add car'
+        next()
     }
     
 }
