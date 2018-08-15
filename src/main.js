@@ -4,14 +4,15 @@ import VueRouter from 'vue-router'
 import AppCars from './components/AppCars.vue'
 import NavBar from './components/NavBar.vue'
 import AddCar from './components/AddCar.vue'
+import SingleCar from './components/SingleCar.vue'
 
 Vue.use(VueRouter);
 
 const routes = [
     {path: '/', redirect: '/cars'},
     {path: '/cars', component: AppCars},
-    {path: '/add', component: AddCar}
-    // {path: '/contacts/:id', component: Contacts, name: 'contact-details'}
+    {path: '/add', component: AddCar},
+    {path: '/cars/:id', component: SingleCar, name: 'single-car'},
 ];
 
 const router = new VueRouter({

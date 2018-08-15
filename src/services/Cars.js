@@ -10,12 +10,15 @@ export default class Cars {
     getAll() {
         return axios.get('cars')
     }
-
     add(car) {
-        // console.log(car.hasOwnProperty(maxSpeed));
         return axios.post('cars', car)
+    }
+    getCar(id) {
+        return axios.get(`cars/${id}`)
+    }
+    deleteCar(car) {
+        return axios.delete(`cars/${car.id}`)
     }
 
 }
-
 export const cars = new Cars ()

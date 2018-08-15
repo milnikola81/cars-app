@@ -48,6 +48,20 @@
                     <td>
                         {{car.numberOfDoors}}
                     </td>
+                    <td style="border:none">
+                        <!-- <router-link :to="{ name: 'user', params: { userId: 123 }}">User</router-link> -->
+                        <router-link :to="{ name: 'single-car', params: {id: car.id}}">
+                            <button type="button" class="btn btn-info">Show</button>
+                        </router-link>
+                    </td>
+                    <td style="border:none">
+                        <!-- <router-link :to="{ name: 'edit-car', params: {id: car.id}}"> -->
+                            <button type="button" class="btn btn-warning">Edit</button>
+                        <!-- </router-link> -->
+                    </td>
+                    <td style="border:none">
+                        <button type="button" class="btn btn-danger" @click="deleteCar(car)">Delete</button>
+                    </td>
                 </tr>
             </tbody>
         </table>
@@ -63,24 +77,36 @@ export default {
             cars: []
         }
     },
+    methods: {
+        deleteCar(car) {
+            let index = this.cars.findIndex(single => single.id === car.id)
+            cars.deleteCar(car)
+            .then((response) => {
+                this.cars.splice(index, 1)
+            })
+            
+        }
+    },
     created() {
         cars.getAll()
         .then((response) => {
             this.cars = response.data
         })
     }
-    
 }
 </script>
 
 <style scoped>
 table {
-    max-width: 600px;
+    max-width: 90%;
     margin: 0 auto;
 }
 th, td {
     border: 1px solid gray;
-    padding: 0.3rem;
+    padding-top: 0.2rem;
+    padding-bottom: 0.2rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
 }
 </style>
 
