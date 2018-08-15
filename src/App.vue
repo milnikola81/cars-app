@@ -13,7 +13,6 @@ import AddCar from './components/AddCar.vue'
 export default {
   name: 'app',
   components: {
-    AppCars,
     NavBar
   }
 }

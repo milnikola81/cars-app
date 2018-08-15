@@ -41,6 +41,7 @@
             <br><br>
 
             <button @click="addCar(newCar)" type="submit">Add car</button>
+            <input type="reset" value="Reset" />
 
         </form><br><br><br>
     </div>
@@ -78,9 +79,12 @@ export default {
 <style scoped>
 
 form {
-    max-width: 600px;
+    max-width: 80%;
     margin: 0 auto;
     text-align: left;
+}
+button {
+    margin-right: 2rem;
 }
 
 </style>
