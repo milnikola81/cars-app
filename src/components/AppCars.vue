@@ -67,6 +67,65 @@
                 </tr>
             </tbody>
         </table>
+        <div id="deletedCar" v-if="(this.user)" >
+            <h3>Car deleted!</h3>
+            <table v-if="(this.user)" class="table table-striped">
+                <thead>
+                    <th>
+                        Brand
+                    </th>
+                    <th>
+                        Model
+                    </th>
+                    <th>
+                        Year
+                    </th>
+                    <th>
+                        Max Speed
+                    </th>
+                    <th>
+                        Is Automatic
+                    </th>
+                    <th>
+                        Engine
+                    </th>
+                    <th>
+                        No. of doors
+                    </th>
+                    <th>
+                        Deleted by
+                    </th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            {{deletedCar.brand}}
+                        </td>
+                        <td>
+                            {{deletedCar.model}}
+                        </td>
+                        <td>
+                            {{deletedCar.year}}
+                        </td>
+                        <td>
+                            {{deletedCar.maxSpeed}}
+                        </td>
+                        <td>
+                            {{deletedCar.isAutomatic}}
+                        </td>
+                        <td>
+                            {{deletedCar.engine}}
+                        </td>
+                        <td>
+                            {{deletedCar.numberOfDoors}}
+                        </td>
+                        <td>
+                            {{user}}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </template>
 
@@ -76,11 +135,15 @@ import { cars } from '../services/Cars'
 export default {
     data () {
         return {
-            cars: []
+            cars: [],
+            user: '',
+            deletedCar: {}
         }
     },
     methods: {
         deleteCar(car) {
+            this.user = prompt('Please enter your name')
+            this.deletedCar = car
             let index = this.cars.findIndex(single => single.id === car.id)
             cars.deleteCar(car)
             .then((response) => {
@@ -94,12 +157,19 @@ export default {
         .then((response) => {
             this.cars = response.data
         })
+    },    
+    beforeRouteLeave: function(to, from, next) {
+        this.user = ''
+        next()
     }
 }
 </script>
 
 <style scoped>
 #AppCars {
+    margin-top: 2rem;
+}
+#deletedCar {
     margin-top: 2rem;
 }
 table {

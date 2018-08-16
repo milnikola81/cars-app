@@ -2,7 +2,7 @@
     <div id="AddCar">
         <h1 v-if="(!this.$route.params.id)">Add car</h1>
         <h1 v-else>Edit car</h1>
-        <form @submit.prevent>
+        <form id="addCarForm" @submit.prevent>
             <div class="form-group">
                 <label>Brand</label> <br>
                 <input  class="form-control" v-model="newCar.brand" type="text" minlength="2" placeholder="brand..." required>
@@ -80,6 +80,7 @@ export default {
     },
     methods: {
         addCar(newCar) {
+            // document.getElementById("addCarForm").reset();
             if(typeof newCar.isAutomatic === "undefined") {
                 newCar.isAutomatic = false;
             }
@@ -118,11 +119,14 @@ export default {
             cars.getCar(this.$route.params.id)
             .then(response => (this.newCar = response.data));
         }
-    },
-    // beforeRouteLeave: function(to, from, next) {
-    //     this.title = 'Add car'
-    //     next()
-    // }
+        else if(!this.$route.params.id) {
+            this.newCar = {};
+        }
+    },    
+    beforeRouteLeave: function(to, from, next) {
+        this.newCar = {}
+        next()
+    } // resets the form and clears object when navigating from edit to add
     
 }
 </script>
