@@ -67,72 +67,18 @@
                 </tr>
             </tbody>
         </table>
-        <div id="deletedCar" v-if="(this.user)" >
-            <h3>Car deleted!</h3>
-            <table v-if="(this.user)" class="table table-striped">
-                <thead>
-                    <th>
-                        Brand
-                    </th>
-                    <th>
-                        Model
-                    </th>
-                    <th>
-                        Year
-                    </th>
-                    <th>
-                        Max Speed
-                    </th>
-                    <th>
-                        Is Automatic
-                    </th>
-                    <th>
-                        Engine
-                    </th>
-                    <th>
-                        No. of doors
-                    </th>
-                    <th>
-                        Deleted by
-                    </th>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>
-                            {{deletedCar.brand}}
-                        </td>
-                        <td>
-                            {{deletedCar.model}}
-                        </td>
-                        <td>
-                            {{deletedCar.year}}
-                        </td>
-                        <td>
-                            {{deletedCar.maxSpeed}}
-                        </td>
-                        <td>
-                            {{deletedCar.isAutomatic}}
-                        </td>
-                        <td>
-                            {{deletedCar.engine}}
-                        </td>
-                        <td>
-                            {{deletedCar.numberOfDoors}}
-                        </td>
-                        <td>
-                            {{user}}
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+        <CarDeleted v-if="(this.user)" :deletedCar = 'deletedCar' :user = 'user'/>
     </div>
 </template>
 
 <script>
 import { cars } from '../services/Cars'
+import CarDeleted from '../components/CarDeleted.vue'
 
 export default {
+    components: {
+        CarDeleted
+    },
     data () {
         return {
             cars: [],
@@ -167,9 +113,6 @@ export default {
 
 <style scoped>
 #AppCars {
-    margin-top: 2rem;
-}
-#deletedCar {
     margin-top: 2rem;
 }
 table {
