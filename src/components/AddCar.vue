@@ -1,6 +1,7 @@
 <template>
     <div id="AddCar">
-        <h1>{{ title }}</h1>
+        <h1 v-if="(!this.$route.params.id)">Add car</h1>
+        <h1 v-else>Edit car</h1>
         <form @submit.prevent>
             <div class="form-group">
                 <label>Brand</label> <br>
@@ -55,8 +56,8 @@
             </div>
             <br><br>
 
-            <button class="btn btn-success" v-if="(!this.$route.params.id)" @click="addCar(newCar)" type="submit">{{ title }}</button>
-            <button class="btn btn-warning" v-else @click="edit(newCar)" type="submit">Edit car</button>
+            <button class="btn btn-success" v-if="(!this.$route.params.id)" @click="addCar(newCar)" type="submit">Add car</button>
+            <button class="btn btn-success" v-else @click="edit(newCar)" type="submit">Done</button>
             <button class="btn btn-info" @click="preview(newCar)" type="submit">Preview</button>
             <input class="btn btn-danger" type="reset" value="Reset" />
             <br>
@@ -72,7 +73,7 @@ import { cars } from '../services/Cars'
 export default {
     data () {
         return {
-            title: 'Add car',
+            // title: 'Add car',
             newCar: {},
             years: []
         }
@@ -117,12 +118,11 @@ export default {
             cars.getCar(this.$route.params.id)
             .then(response => (this.newCar = response.data));
         }
-        // console.log(this.$route.params.id)
     },
-    beforeRouteLeave: function(to, from, next) {
-        this.title = 'Add car'
-        next()
-    }
+    // beforeRouteLeave: function(to, from, next) {
+    //     this.title = 'Add car'
+    //     next()
+    // }
     
 }
 </script>
